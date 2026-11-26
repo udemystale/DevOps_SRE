@@ -1,0 +1,47 @@
+Meeting Title: Day-6 of K8s Last Day / Day-11 of Module-5 with Batch-45 (26th Nov 2026, 8AM IST)
+
+SUMMARY:
+This was a hands-on Kubernetes session led by Vikas. The session focused on practical implementation rather than theory. Key activities covered were creating a GKE cluster on Google Cloud, setting up Kubernetes namespaces, deploying secrets and config maps, and deploying NGINX.
+
+PROPER NOTES:
+
+Cluster Creation
+Created a Kubernetes cluster on Google Cloud (GKE)
+Location: Europe region had issues, so adjusted accordingly
+Node pool configured with 1 node, standard size, 30GB storage
+Cluster creation takes approximately 3 minutes
+Namespace
+Command used to create a namespace called "kubernetes-workshop"
+Context was set so all future work stays within this namespace
+Purpose: Isolated environments for dev, pre-prod, prod, experimental, demo, etc.
+Secrets (secrets.yml)
+A secret named "DB Secret" was created
+Type: Opaque (meaning not visible/see-through, used for sensitive data)
+Stored two database credentials inside the secret
+Config Map
+Used to store non-sensitive configuration information
+Purpose: Helps one application connect to another using endpoints/URLs
+Config map can be described to view its contents
+GitHub Repo
+All session code available on GitHub under "KATES demo" repository
+Students advised to bookmark the repo
+NGINX Deployment
+After cluster was ready, NGINX deployment was initiated
+Students connected to cluster via Cloud Shell
+Q AND A FROM SESSION:
+
+Q: What is a Namespace?
+A: An isolated environment used to separate workloads like dev, pre-prod, prod, experimental, etc.
+
+Q: What is written in secrets.yml?
+A: A secret named "DB Secret" containing two database credentials.
+
+Q: What does "Opaque" type mean in secrets?
+A: Opaque means not visible or see-through, indicating sensitive data that is hidden/blocked.
+
+Q: What is a Config Map?
+A: A file storing non-sensitive configuration information, such as endpoints or URLs, used to connect applications within Kubernetes.
+
+Q: How do applications connect in Kubernetes?
+A: Either through labels and selectors, or through config maps that provide endpoint/URL information.
+
