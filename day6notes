@@ -45,3 +45,43 @@ A: A file storing non-sensitive configuration information, such as endpoints or 
 Q: How do applications connect in Kubernetes?
 A: Either through labels and selectors, or through config maps that provide endpoint/URL information.
 
+
+Deploy Application (NGINX)
+Deploy NGINX with 2 replicas. The deployment YAML references both the ConfigMap and Secrets.
+Commands: kubectl apply, kubectl get pods, kubectl get deployments.
+
+Service
+A service acts as a proxy/connector to expose the deployment internally within the cluster (ClusterIP, not LoadBalancer this time).
+
+Ingress
+Ingress manages routing rules for incoming traffic to reach the application. It avoids the need for multiple external IPs (which are chargeable). GCP has a built-in Ingress controller. Other controllers like NGINX Ingress are also available.
+
+Port Forwarding
+Since no external IP is assigned, use port forwarding to access the app via the browser using Google Cloud Shell Web Preview.
+
+Scaling
+To scale replicas without UI access, use:
+kubectl scale deployment demo-service --replicas=5
+Important note: Scaling may cause version mismatch between old and new pods, so a rollout of the new version is needed when application changes occur.
+
+
+What is a Namespace? - It is an isolated environment used to separate different environments like dev, pre-prod, and prod.
+
+What is a Secret? - It stores sensitive information like database credentials. The type "Opaque" means the data is not visible or see-through, indicating sensitive content encoded in base64.
+
+What is a ConfigMap? - It stores non-sensitive configuration information, such as database URLs and application endpoints, used to connect applications within the cluster.
+
+What is Ingress? - It defines routing rules for how external or internal traffic flows into the application. It avoids the need for multiple external IPs (which are chargeable) by routing traffic through a single controller.
+
+Why create a Service? - A Service acts as a proxy/connector to expose pods and make them accessible within or outside the cluster.
+
+How to scale an application without UI access? - Use the kubectl scale command and specify the desired number of replicas.
+
+What is the problem when scaling? - When new pods are created after scaling, some pods may run on the old version while others run on the new version, causing inconsistency.
+
+How to fix version inconsistency after scaling? - Use the kubectl rollout command to push the new version to all pods uniformly.
+
+What is the difference between create and apply commands? - Best practice is to use create for the first deployment and apply for subsequent updates.
+
+How to view a running resource as YAML? - Add the flag -o yaml to your kubectl command to see the YAML definition of any running resource.
+
