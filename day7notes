@@ -37,6 +37,67 @@ Q & A
 Q: Can Prometheus & Grafana be used without Kubernetes?
 A: Yes, but it is best fit for Kubernetes. On VMs, configuration has to be done manually.
 
+S - Prometheus & Grafana Session (Day 1)
+
+TOPIC: Why Monitoring is Required
+
+If a server goes down in Kubernetes, logs get deleted automatically. Without centralized logging, troubleshooting is impossible.
+
+With 100+ machines, manually checking logs is not feasible.
+
+Hackers can enter systems and delete logs. A centralized backup protects against this.
+
+Storing all logs on individual servers increases machine size and cost.
+
+SOLUTION: Centralized location for logs with continuous monitoring.
+
+TYPES OF MONITORING:
+
+Infrastructure Monitoring - CPU, memory, disk, network, VMs, containers, on-premises servers.
+
+Application Monitoring - Application logs, access logs, APIs, SLAs, transactions, error logs, performance, user response.
+
+Network Monitoring - Throughput, packet loss, data input/output, network outages. Often uses agentless methods like SNMP or APIs.
+
+TOOLS DISCUSSED:
+
+Prometheus & Grafana (open source, best for Kubernetes)
+Splunk (best for logging purposes, enterprise)
+ELK Stack (Elasticsearch, Logstash, Kibana)
+Dynatrace (end-to-end application monitoring)
+Nagios (older tool, network/disk monitoring)
+Zabbix (older tool)
+SolarWinds (older tool)
+CloudWatch (AWS-managed environments)
+Datadog (application monitoring)
+HOW MONITORING WORKS:
+An agent software is installed on the machine. The agent collects data, metrics, and logs, analyzes them, and visualizes/reports them. Alerts can be configured based on thresholds.
+
+HELM - Package Manager for Kubernetes:
+
+Helm is to Kubernetes what APT/YUM is to Linux.
+Used to install, configure, and upgrade software in Kubernetes.
+Helm Charts contain the application package.
+values.yaml file contains configurable parameters/dependencies. Comment out what is not needed.
+COMMON ISSUES MONITORING HELPS DETECT:
+
+Disk full
+Application bugs
+Hardware/temperature failures
+Network outages
+Low or wasted memory/CPU utilization
+Software errors
+Q&A HIGHLIGHTS:
+
+Q: Why use two monitoring tools?
+A: One for enterprise/production, one for dev/QA environments internally managed.
+
+Q: Can Prometheus & Grafana be used outside Kubernetes?
+A: Yes, but configuration is manual. It is best suited for Kubernetes environments.
+
+Q: How does infra monitoring work?
+A: An agent collects metrics and pushes them to a centralized location for analysis and alerting.
+
 Q: Why not just use AI for troubleshooting?
 A: AI gives generalized answers. It does not know your specific infrastructure. You need your own knowledge to apply fixes based on your environment.
 
