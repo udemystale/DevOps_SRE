@@ -1,0 +1,44 @@
+WHY MONITORING IS REQUIRED
+
+Resource Tracking - We need to know CPU, memory, and other resource usage at all times, just like Task Manager on a laptop. Without it, we cannot take action on problems.
+
+Log Preservation - In Kubernetes, if a node goes down and gets recreated (auto-scaling), logs inside that node get deleted. We lose troubleshooting data.
+
+Scale Problem - In large environments (100+ machines), manually checking logs on each machine is impossible.
+
+Security - Hackers can enter a system and delete logs. Without a backup, we never know what happened.
+
+Storage Problem - Keeping all logs on application servers makes machines heavy and costly.
+
+SOLUTION: Centralized Monitoring System
+
+Keep all logs in a centralized location. Benefits:
+
+Machine goes down? Logs are still safe centrally.
+100 or 1000 machines? All logs in one place.
+Attacker detected? Alerts triggered to security/L1 teams automatically.
+No heavy machines needed for individual servers.
+TOOLS USED IN INDUSTRY (as shared by students)
+
+SolarWinds (older, outdated)
+Prometheus + Grafana (best fit for Kubernetes environments)
+Dynatrace (end-to-end monitoring, threshold-based alerts, dashboards)
+ELK Stack / Elasticsearch + Kibana (log monitoring and alerting)
+Micro Focus
+KEY POINT: Prometheus & Grafana is best suited for Kubernetes/containerized environments. It can also work on VMs but configuration is manual.
+
+AGENDA FOR THIS SESSION
+
+Theory of Prometheus & Grafana
+Installation, setup, and configuration
+Grafana dashboard setup
+Q & A
+
+Q: Can Prometheus & Grafana be used without Kubernetes?
+A: Yes, but it is best fit for Kubernetes. On VMs, configuration has to be done manually.
+
+Q: Why not just use AI for troubleshooting?
+A: AI gives generalized answers. It does not know your specific infrastructure. You need your own knowledge to apply fixes based on your environment.
+
+Q: Why not store logs on the application server itself?
+A: It increases machine size and cost. A centralized location is more efficient and scalable.
