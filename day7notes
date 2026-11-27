@@ -103,3 +103,45 @@ A: AI gives generalized answers. It does not know your specific infrastructure. 
 
 Q: Why not store logs on the application server itself?
 A: It increases machine size and cost. A centralized location is more efficient and scalable.
+
+ELM - Student Notes
+
+What is Helm?
+Helm is a package manager for Kubernetes. Just like APT or YUM are package managers for Linux, Helm serves the same purpose for Kubernetes environments. It helps you define, install, upgrade, and manage applications inside a Kubernetes cluster.
+
+Key Terms:
+
+Helm Chart - A ready-made package/code that contains all the configuration needed to run an application on Kubernetes.
+
+Values.yaml - A configuration file inside a Helm chart where you define parameters for your application. If you need a dependency, you write it in. If you don't need it, you comment it out.
+
+Artifact Hub (previously Helm Hub) - The online repository where you can search and find Helm charts. Website: helm.sh. It contains over 18,000 different charts including Prometheus, Grafana, Argo CD, Redis, Ingress, Vault, GitLab, and more.
+
+How Helm Works:
+
+Search for your desired application chart on Artifact Hub.
+Add the Helm repository.
+Customize values.yaml as per your requirement.
+Install the chart onto your Kubernetes cluster.
+Why Helm for Prometheus and Grafana?
+Instead of manually creating pods, deployments, and configurations, Helm lets you install the entire Prometheus and Grafana monitoring stack with a simple command, saving time and reducing errors.
+
+CNCF Connection:
+Helm is part of the CNCF (Cloud Native Computing Foundation) ecosystem, which is an open-source community that manages cloud-native tools like Kubernetes, Helm, Argo CD, and many more.
+
+QnA:
+
+Q: What is Helm?
+A: Helm is a package manager for Kubernetes used to install and manage applications.
+
+Q: Where do we find Helm charts?
+A: On Artifact Hub (helm.sh), which has 18,000+ charts.
+
+Q: What is values.yaml?
+A: It is a configuration/parameter file inside a Helm chart where application settings and dependencies are defined.
+
+Q: Why use Helm instead of manual setup?
+A: It simplifies installation, upgrade, and management of complex applications like Prometheus and Grafana on Kubernetes.
+
+Q: What is CNCF?
+A: An open-source community that manages cloud-native tools including Kubernetes and Helm.
