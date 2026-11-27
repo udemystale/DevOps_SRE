@@ -145,3 +145,46 @@ A: It simplifies installation, upgrade, and management of complex applications l
 
 Q: What is CNCF?
 A: An open-source community that manages cloud-native tools including Kubernetes and Helm.
+NOTES: How Helm Works + Prometheus & Grafana
+
+--- HOW HELM WORKS ---
+
+Helm is the package manager for Kubernetes, similar to APT or YUM for Linux.
+
+Key concepts:
+
+Charts: Ready-made application packages available on Artifact Hub (artifacthub.io). Previously called Helm Hub.
+values.yaml: A configuration file where you define or customize settings, dependencies, and parameters for your application. Comment out what you don't need.
+Helm works as a client that reads chart definitions (YAML code) and communicates with the Kubernetes API to create pods and applications.
+Command to check Helm version: helm version
+To install any software on Kubernetes (e.g., Prometheus, Grafana, Argo CD, Redis), you find its chart on Artifact Hub and install via Helm. The approach is always the same regardless of the application.
+
+--- PROMETHEUS & GRAFANA ---
+
+Prometheus:
+
+An open-source monitoring tool that collects and stores metrics in a time-series database.
+It pulls data from the Kubernetes cluster using two main components:
+Kube-State-Metrics: Collects the overall state of the Kubernetes cluster (applications, namespaces, deployments, everything).
+Node Exporter: Collects node-level (infrastructure) information like CPU, memory, disk per node.
+Data is stored in Persistent Volumes inside the cluster.
+You query data using PromQL (Prometheus Query Language).
+Can send alerts to notification services like Slack.
+Grafana:
+
+A visualization tool that creates dashboards and graphs.
+Connects to Prometheus as a data source (supports many other data sources too).
+You run PromQL queries from Grafana UI, and results are visualized as charts, graphs, and dashboards.
+Can be configured to send alerts based on thresholds.
+Real-world example: Domino's order tracking screens, stadium display boards likely use Grafana-style dashboards.
+--- Q&A SUMMARY ---
+
+Q: Why use both?
+A: Prometheus collects and stores metrics; Grafana visualizes them. They work together.
+
+Q: Where is Helm installed on GKE?
+A: Helm is automatically pre-installed on Google Kubernetes Engine clusters by default.
+
+Q: Where to find Helm charts?
+A: Artifact Hub (artifacthub.io) - contains 18,000+ charts.
+
