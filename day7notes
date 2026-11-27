@@ -20,6 +20,49 @@ Attacker detected? Alerts triggered to security/L1 teams automatically.
 No heavy machines needed for individual servers.
 TOOLS USED IN INDUSTRY (as shared by students)
 
+MONITORING TYPES COVERED
+
+Infrastructure Monitoring - Covers CPU, memory, disk, network, VMs, containers, on-premises servers. An agent collects data, analyzes it, and visualizes/reports it.
+
+Application Monitoring - Covers application logs, access logs, APIs, SLAs, transactions, performance, error logs, user response metrics, network traffic.
+
+Network Monitoring - Covers throughput, input/output, packet loss, data loss. Often uses SNMP or APIs since agents cannot be installed on network devices.
+
+HELM (Kubernetes Package Manager)
+
+Helm is the package manager for Kubernetes, similar to APT/YUM for Linux.
+Charts are Helm's packaged application code.
+values.yaml file contains configuration parameters that can be customized.
+Charts are available on Artifact Hub (previously Helm Hub).
+CNCF (Cloud Native Computing Foundation) is the open-source community managing tools like Kubernetes, Helm, Argo CD, etc.
+PROMETHEUS AND GRAFANA
+
+Prometheus collects and stores metrics in a time-series database from Kubernetes clusters using Kube-State-Metrics (cluster state) and Node Exporter (node/infra level data).
+Grafana is the visualization tool that creates dashboards, graphs, and alerts using PromQL queries against Prometheus data.
+Grafana supports many data sources beyond Prometheus.
+INSTALLATION STEPS PERFORMED
+
+Created a GKE cluster named "monitoring-setup"
+Connected to the cluster
+Created namespace: kubectl create namespace monitor
+Added Helm repo: helm repo add prometheus-community
+Updated repo: helm repo update
+Installed stack: helm install kube-prometheus-stack prometheus-community/kube-prometheus-stack --namespace monitor
+Verified pods: kubectl get pods -n monitor
+Retrieved Grafana password from Kubernetes secrets
+Exposed Grafana via load balancer on port 3000
+Logged into Grafana dashboard (username: admin)
+Q&A SUMMARY
+
+Q: Can Prometheus/Grafana be used without Kubernetes?
+A: Yes, but configuration is manual. Best fit is Kubernetes environments.
+
+Q: What is CNCF?
+A: An open-source community managing cloud-native tools. Contributors include Google, Microsoft, Bitnami.
+
+Q: Who built the Grafana dashboards in companies?
+A: DevOps/monitoring teams customize them based on requirements using default templates as a base.
+
 SolarWinds (older, outdated)
 Prometheus + Grafana (best fit for Kubernetes environments)
 Dynatrace (end-to-end monitoring, threshold-based alerts, dashboards)
