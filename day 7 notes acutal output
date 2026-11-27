@@ -1,0 +1,59 @@
+helm uninstall kube-prometheus-stack -n monitor
+helm install kube-prometheus-stack prometheus-community/kube-prometheus-stack \
+  --namespace monitor --create-namespace --wait --timeout 10m
+release "kube-prometheus-stack" uninstalled
+I1127 03:57:30.146114    2121 warnings.go:107] "Warning: autopilot-default-resources-mutator:Autopilot updated Job monitor/kube-prometheus-stack-admission-create: defaulted unspecified 'cpu' resource for containers [create] (see http://g.co/gke/autopilot-defaults)."
+I1127 03:58:01.410632    2121 warnings.go:107] "Warning: autopilot-default-resources-mutator:Autopilot updated Deployment monitor/kube-prometheus-stack-kube-state-metrics: defaulted unspecified 'cpu' resource for containers [kube-state-metrics] (see http://g.co/gke/autopilot-defaults)."
+I1127 03:58:01.460026    2121 warnings.go:107] "Warning: autopilot-default-resources-mutator:Autopilot updated Deployment monitor/kube-prometheus-stack-operator: defaulted unspecified 'cpu' resource for containers [kube-prometheus-stack] (see http://g.co/gke/autopilot-defaults)."
+I1127 03:58:02.606015    2121 warnings.go:107] "Warning: autopilot-default-resources-mutator:Autopilot updated Deployment monitor/kube-prometheus-stack-grafana: defaulted unspecified 'cpu' resource for containers [grafana-sc-dashboard, grafana-sc-datasources, grafana] (see http://g.co/gke/autopilot-defaults)."
+I1127 03:58:02.896001    2121 warnings.go:107] "Warning: AdmissionWebhookController: mutated namespaceselector of the webhooks to enforce GKE Autopilot policies."
+Error: INSTALLATION FAILED: server-side apply failed for object kube-system/kube-prometheus-stack-coredns /v1, Kind=Service: services "kube-prometheus-stack-
+coredns" is forbidden: User "sushiltale19@gmail.com" cannot patch resource "services" in API group "" in the namespace "kube-system": GKE Warden authz [denie
+d by managed-namespaces-limitation]: the namespace "kube-system" is managed and the request's verb "patch" is denied
+server-side apply failed for object kube-system/kube-prometheus-stack-kube-proxy /v1, Kind=Service: services "kube-prometheus-stack-kube-proxy" is forbidden:
+ User "sushiltale19@gmail.com" cannot patch resource "services" in API group "" in the namespace "kube-system": GKE Warden authz [denied by managed-namespace
+s-limitation]: the namespace "kube-system" is managed and the request's verb "patch" is denied
+server-side apply failed for object kube-system/kube-prometheus-stack-kube-controller-manager /v1, Kind=Service: services "kube-prometheus-stack-kube-control
+ler-manager" is forbidden: User "sushiltale19@gmail.com" cannot patch resource "services" in API group "" in the namespace "kube-system": GKE Warden authz [d
+enied by managed-namespaces-limitation]: the namespace "kube-system" is managed and the request's verb "patch" is denied
+server-side apply failed for object kube-system/kube-prometheus-stack-kube-etcd /v1, Kind=Service: services "kube-prometheus-stack-kube-etcd" is forbidden: U
+ser "sushiltale19@gmail.com" cannot patch resource "services" in API group "" in the namespace "kube-system": GKE Warden authz [denied by managed-namespaces-
+limitation]: the namespace "kube-system" is managed and the request's verb "patch" is denied
+server-side apply failed for object kube-system/kube-prometheus-stack-kube-scheduler /v1, Kind=Service: services "kube-prometheus-stack-kube-scheduler" is fo
+rbidden: User "sushiltale19@gmail.com" cannot patch resource "services" in API group "" in the namespace "kube-system": GKE Warden authz [denied by managed-n
+amespaces-limitation]: the namespace "kube-system" is managed and the request's verb "patch" is denied
+server-side apply failed for object monitor/kube-prometheus-stack-prometheus-node-exporter apps/v1, Kind=DaemonSet: admission webhook "warden-validating.comm
+on-webhooks.networking.gke.io" denied the request: GKE Warden rejected the request because it violates one or more constraints.
+Violations details: {"[denied by autogke-disallow-hostnamespaces]":["enabling hostNetwork is not allowed in Autopilot.","enabling hostPID is not allowed in A
+utopilot."],"[denied by autogke-no-write-mode-hostpath]":["hostPath volume proc used in container node-exporter uses path /proc which is not allowed in Autop
+ilot. Allowed path prefixes for hostPath volumes are: [/var/log/].","hostPath volume sys used in container node-exporter uses path /sys which is not allowed 
+in Autopilot. Allowed path prefixes for hostPath volumes are: [/var/log/].","hostPath volume root used in container node-exporter uses path / which is not al
+lowed in Autopilot. Allowed path prefixes for hostPath volumes are: [/var/log/]."],"[denied by autogke-node-affinity-selector-limitation]":["Key 'eks.amazona
+ws.com/compute-type' is not allowed with node affinity if not using workload separation; Autopilot only allows labels with keys: cloud.google.com/compute-cla
+ss,cloud.google.com/machine-family,cloud.google.com/gke-ephemeral-storage-local-ssd,cloud.google.com/gke-spot,cloud.google.com/gke-placement-group,topology.k
+ubernetes.io/region,topology.kubernetes.io/zone,failure-domain.beta.kubernetes.io/region,failure-domain.beta.kubernetes.io/zone,cloud.google.com/gke-os-distr
+ibution,kubernetes.io/os,kubernetes.io/arch,cloud.google.com/private-node,sandbox.gke.io/runtime,cloud.google.com/gke-accelerator,cloud.google.com/gke-accele
+rator-count,iam.gke.io/gke-metadata-server-enabled,cloud.google.com/reservation-name,cloud.google.com/gke-tpu-accelerator,cloud.google.com/gke-tpu-topology,c
+loud.google.com/reservation-project,cloud.google.com/reservation-affinity,cloud.google.com/gke-gpu-sharing-strategy,cloud.google.com/gke-max-shared-clients-p
+er-gpu,cloud.google.com/gke-gpu-partition-size,cloud.google.com/pods-per-node,autoscaling.gke.io/provisioning-request,cloud.google.com/gke-max-run-duration-s
+econds,cloud.google.com/gke-flex-start,cloud.google.com/gke-workload-type,cloud.google.com/placement-policy-name,cloud.google.com/gke-nodepool-group-name,clo
+ud.google.com/reservation-blocks,cloud.google.com/reservation-subblocks,cloud.google.com/gke-confidential-nodes-instance-type,cloud.google.com/gke-gpu-topolo
+gy,cloud.google.com/placement-policy-name,node.gke.io/enable-writable-cgroups,cloud.google.com/gke-gpu-dra-driver,cloud.google.com/gke-tpu-dra-driver,cloud.g
+oogle.com/gke-networking-dra-driver,cloud.google.com/gke-consolidation-delay-seconds,cloud.google.com/gke-boot-disk,cloud.google.com/gke-boot-disk-size,cloud
+.google.com/gke-gpu-driver-version,cloud.google.com/gke-host-maintenance-interval,cloud.google.com/gke-location-hint,cloud.google.com/gke-nccl-fastsocket,clo
+ud.google.com/gke-nodepool-group-name,cloud.google.com/gke-tpu-auto-restart,cloud.google.com/gke-tpu-ici-resiliency,cloud.google.com/gke-workload-type,cloud.
+google.com/pods-per-node.","Key 'type' is not allowed with node affinity if not using workload separation; Autopilot only allows labels with keys: cloud.goog
+le.com/compute-class,cloud.google.com/machine-family,cloud.google.com/gke-ephemeral-storage-local-ssd,cloud.google.com/gke-spot,cloud.google.com/gke-placemen
+t-group,topology.kubernetes.io/region,topology.kubernetes.io/zone,failure-domain.beta.kubernetes.io/region,failure-domain.beta.kubernetes.io/zone,cloud.googl
+e.com/gke-os-distribution,kubernetes.io/os,kubernetes.io/arch,cloud.google.com/private-node,sandbox.gke.io/runtime,cloud.google.com/gke-accelerator,cloud.goo
+gle.com/gke-accelerator-count,iam.gke.io/gke-metadata-server-enabled,cloud.google.com/reservation-name,cloud.google.com/gke-tpu-accelerator,cloud.google.com/
+gke-tpu-topology,cloud.google.com/reservation-project,cloud.google.com/reservation-affinity,cloud.google.com/gke-gpu-sharing-strategy,cloud.google.com/gke-ma
+x-shared-clients-per-gpu,cloud.google.com/gke-gpu-partition-size,cloud.google.com/pods-per-node,autoscaling.gke.io/provisioning-request,cloud.google.com/gke-
+max-run-duration-seconds,cloud.google.com/gke-flex-start,cloud.google.com/gke-workload-type,cloud.google.com/placement-policy-name,cloud.google.com/gke-nodep
+ool-group-name,cloud.google.com/reservation-blocks,cloud.google.com/reservation-subblocks,cloud.google.com/gke-confidential-nodes-instance-type,cloud.google.
+com/gke-gpu-topology,cloud.google.com/placement-policy-name,node.gke.io/enable-writable-cgroups,cloud.google.com/gke-gpu-dra-driver,cloud.google.com/gke-tpu-
+dra-driver,cloud.google.com/gke-networking-dra-driver,cloud.google.com/gke-consolidation-delay-seconds,cloud.google.com/gke-boot-disk,cloud.google.com/gke-bo
+ot-disk-size,cloud.google.com/gke-gpu-driver-version,cloud.google.com/gke-host-maintenance-interval,cloud.google.com/gke-location-hint,cloud.google.com/gke-n
+ccl-fastsocket,cloud.google.com/gke-nodepool-group-name,cloud.google.com/gke-tpu-auto-restart,cloud.google.com/gke-tpu-ici-resiliency,cloud.google.com/gke-wo
+rkload-type,cloud.google.com/pods-per-node."]}
+Requested by user: 'sushiltale19@gmail.com', groups: 'system:authenticated'.
